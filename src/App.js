@@ -3,23 +3,29 @@ import React, { Component } from 'react'
 export default class HomeContainer extends Component {
   constructor(props) {
     super(props)
+
+    // LOCAL STATE
     this.state = {
       dataEntry: '',
       ans: 0
     }
+
   }
 
+  // HANDLE STATE CHANGE ON BUTTON CLICK
   handleClick = (e) => {
     e.preventDefault()
     this.setState({ dataEntry: `${this.state.dataEntry}${e.target.value}` })
   }
 
+  // HANDLE SUBMIT
   handleSubmit = e => {
     e.preventDefault()
     const ans = eval(this.state.dataEntry)
     this.setState({ ans })
   }
 
+  //HANDLE CLEAR ENTRY
   handleClear = e => {
     e.preventDefault()
     this.setState({ dataEntry: '', ans: 0 })
@@ -29,12 +35,14 @@ export default class HomeContainer extends Component {
     return (
       <main>
         <form style={styles.calculatorContainer} onSubmit={this.handleSubmit}>
+
           <div style={styles.subDisplay}>
             {this.state.dataEntry}
           </div>
           <div style={styles.mainDisplay}>
             {this.state.ans}
           </div>
+
           <br />
 
           <div style={styles.controlArea}>
@@ -43,6 +51,7 @@ export default class HomeContainer extends Component {
             <div style={styles.controlBox}><button style={styles.controlBtn} disabled>...</button></div>
             <div style={styles.controlBox}><button style={styles.controlBtn} value="ce" onClick={this.handleClear}>CE</button></div>
           </div>
+
           <div style={styles.controlArea}>
             <div style={styles.controlBox}><button style={styles.controlBtn} value="7" onClick={this.handleClick}>7</button></div>
             <div style={styles.controlBox}><button style={styles.controlBtn} value="8" onClick={this.handleClick}>8</button></div>
@@ -76,6 +85,9 @@ export default class HomeContainer extends Component {
     )
   }
 }
+
+
+//INLINE STYLES
 
 const styles = {
   calculatorContainer: {
